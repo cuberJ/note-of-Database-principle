@@ -9,7 +9,7 @@ answer=$?
 echo $answer
 if [ "$answer"x = "0"x ]
     then echo '成功上传'
-elif [ "$answer" = "128"x ]
+elif [ "$answer"x = "128"x ]
     then echo '网络连接失败'
 else
     echo '非网络因素的上传失败'
