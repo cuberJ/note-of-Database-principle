@@ -5,4 +5,9 @@ else
     git commit -m '修订';echo '未提供变量，但成功加入仓库'
 fi
 git push database master
-echo '成功上传'
+echo $?
+if $? = 0
+    then echo '成功上传'
+else
+    echo '网络连接失败'
+fi
