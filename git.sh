@@ -9,7 +9,7 @@ echo $?
 if $? = '0'
     then echo '成功上传'
 elif $? = '128'
-    echo '网络连接失败'
+    then echo '网络连接失败'
 else
     echo '非网络因素的上传失败'
 fi
