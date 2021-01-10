@@ -7,9 +7,9 @@ fi
 git push database master
 answer=$?
 echo $answer
-if $answer = "0"
+if [ "$answer"x = "0"x ]
     then echo '成功上传'
-elif $answer = "128"
+elif [ "$answer" = "128"x ]
     then echo '网络连接失败'
 else
     echo '非网络因素的上传失败'
