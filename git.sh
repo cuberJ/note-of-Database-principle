@@ -4,7 +4,7 @@ if $1 != ""
 else
     git commit -m '修订';echo '未提供变量，但成功加入仓库'
 fi
-git push database master
+git push database master 2>/dev/null
 answer=$?
 echo $answer
 if [ "$answer"x = "0"x ]
