@@ -22,7 +22,5 @@ if [ "$answer"x = "0"x ]
 elif [ "$answer"x = "128"x ]
     then echo github网络连接失败
 else
-    echo 非网络连接问题导致的上传失败
+    echo 非网络连接问题导致的上传失败，测试ping百度;ping www.baidu.com
 fi
-echo 测试百度ping结果...
-ping www.baidu.com
