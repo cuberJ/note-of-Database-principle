@@ -148,6 +148,61 @@ def func(a: Int=10, b:Int=20): Int = { // 默认a为10,b为20，和Python的一�
 val result = func(a=5) // 则传入的a=5，b=20，返回值25
 
 //可变长参数的方法
-def func(s: String): 
+def func(s: String*): Unit = { //在String后面加个*可以传入任意多个字符串
+    println(s)
+} 
 ```
+
+
+
+#### 偏应用函数
+
+```scala
+//应用场景：一个函数的传入参数中，只有一个在变化，其他的都固定不变，则可以使用偏应用函数
+val date = new Date()
+def showDate(date, user:String): Unit={
+    println(s"$date by $user")
+}
+//现在假如user在调用showDate的时候会不断变化
+def func = showDate(date, _:String) //下划线表示会变化的变量
+func("abc")//打印的结果中，user的名字就是abc，不需要额外显式传递date这个参数
+```
+
+
+
+#### 高阶函数
+
+1. 方法的参数是函数
+
+   ```scala
+   def func1(a:Int, b:Int):Int = {
+       return a+b
+   }
+   
+   def func2(f:(Int, Int)=>Int, s:String): Unit = { // 传入参数是函数f的时候，括号内是函数f的传入参数，箭头指向f的返回值
+       println(func1(100, 200))
+   }
+   func2(func1, "test")
+   ```
+
+   
+
+
+
+2. 方法的返回是函数
+
+```scala
+def func1(s:String):(String, String)=>String = {
+    def func2(a:String, b:String): String = {
+        return a+b
+    }
+    return func2
+}
+```
+
+
+
+
+
+3. 方法的参数和返回都是函数
 
