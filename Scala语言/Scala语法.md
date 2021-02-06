@@ -15,16 +15,38 @@ object Lesson_ClassAndObj{
 
 
 
+#### 输入控制
+
+```scala
+import io.StdIn._
+var i = readInt() // 读入一个int型
+//如果是float就是readFloat
+var i = readLine("Please input the sentence") //直接读取一行，包括空格
+```
+
+
+
+
+
 ### 数据类型
 
 1. 显示数据类型：
 
    ```scala
-   val a = 100.var//回车后可以编辑变量的类型，类型不用指定
+   val a:Int= 100//回车后可以编辑变量的类型，类型不用指定,如果需要指定，则采用冒号+数据类型的方式
    var b = 200 //val是变量，相当于const。var是可变变量
    ```
 
-2. 类
+2. `a 方法b ` 等价于 `a.方法（b）`
+
+   ```scala
+   val sum = 5 + 3 //+是一个方法，和下面的表述方式等价
+   val sum = (5).+(3)
+   ```
+
+   
+
+3. 类
 
    ```scala
    class Person(var xname: String, xage:Int){
@@ -44,7 +66,7 @@ object Lesson_ClassAndObj{
 1. if  else
 
    ```scala
-   val age = 20
+   val age: Int = 20
    if(age <=20)
    {
        println("20")
@@ -74,6 +96,10 @@ object Lesson_ClassAndObj{
        println(i) //until不包含10，集合中数字从1到9
    }
    val r = 1.to(10,2) //表示从1到10，步长为2，打印的结果为Range(1,3,5,7,9)
+   //步长的另一种写法是by
+   val r = 1.to(10) by 2
+   //同理，to可以支持浮点数和其他类型的变量
+   val r = 0.5f to 5.9f by 0.8f
    
    for(i <- 1 until 10)
    {
@@ -206,3 +232,29 @@ def func1(s:String):(String, String)=>String = {
 
 3. 方法的参数和返回都是函数
 
+
+
+# 数据结构
+
+## 列表List
+
+1. List中所有元素在声明的时候就已经确定，后面不可以修改，相当于const tunple
+
+   1. 可以采用head方式返回列表的第一个值
+   2. 可以用tail返回除了第一个值以外的所有值 
+
+2. 列表的构造方法
+
+   1. 直接声明
+
+   2. 在一有列表<u>**前端**</u>直接加入
+
+      ```scala
+      val list1 = ("a","b","c")
+      val list2 = "d" :: list1
+      //list2此时为（"d","a","b","c")
+      ```
+
+      
+
+   
