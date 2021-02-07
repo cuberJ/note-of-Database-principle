@@ -238,7 +238,15 @@ def func1(s:String):(String, String)=>String = {
 
 ## 列表List
 
-1. List中所有元素在声明的时候就已经确定，后面不可以修改，相当于const tunple
+1. List中所有元素如果采用val的方式声明，内部的元素可以修改，但是指向的数组不能变
+
+   > 例如：
+   >
+   > ```scala
+   > val test = List("barry", "Allen")
+   > ```
+   >
+   > test里面的元素可以修改，但test这个变量必须指向这个List，不能再改为指向其他的List
 
    1. 可以采用head方式返回列表的第一个值
    2. 可以用tail返回除了第一个值以外的所有值 
@@ -255,6 +263,94 @@ def func1(s:String):(String, String)=>String = {
       //list2此时为（"d","a","b","c")
       ```
 
-      
+   3. 采用Nil方式。Nil本身是一个空列表对象，可以借助Nil将多个元素用`::`串连起来
 
-   
+      ```scala
+      val intList = 1::2::3::Nil
+      //等价于
+      val intList = List(1,2,3)
+      ```
+
+
+
+
+## 集合set
+
+采用哈希映射，能够快速找到存储的元素。注意，这个set不是字典
+
+集合分为可变集合和不可变集合。默认是不可变集合
+
+```scala
+var mySet = Set("123","456")
+mySet += "789" // 虽然这里默认采用了不可变集合，但是mySet是var类型，表示mySet作为指针可以指向其他的Set。加入了789字符串相当于在内存中开辟了新的Set，让mySet指向了这个Set
+```
+
+
+
+## Map映射
+
+```scala
+val university = Map("XMU"->"xiamen", "THU"->"tsinghua")
+val xmu = if(university.contains("XMU")) university("XMU") else 0
+println(xmu)
+//添加新元素两种方式
+university += ("Beijing"->"beijing", "Test"->"test") // 可以一次加入多个键值对
+university("Beijing") = "beijing"
+//注意，必须使用可变映射才可以添加键值对，此时需要引入可变映射包
+import scala.collection.mutable.Map 
+```
+
+
+
+### 遍历映射
+
+```scala
+for((k,v)<- university) printf("%s 's anthor name is %s'",k,v)
+//如果只打印键
+for(k<-university.keys) printf("%s is one of the key",k)
+```
+
+
+
+## 数组Array
+
+```scala
+val intValue = new Array[Int](3) //Int型初始化为0
+intValue(0) = 1
+val strValue = new Array[String](3) //string初始化为null
+for(i <- 0 to 2) printf("%s is the value", strValue(i))
+```
+
+ 
+
+### 多维数组
+
+```scala
+val myMatrix = Array.ofDim[Int](3,4) // 定义的是一个三行4列的二维数组
+val myMatrix = Array.ofDim[String](3,4,5) // 定义的是一个3行4列5高的三维数组
+```
+
+
+
+### 可变长数组
+
+```scala
+import scala.collection.mutable.ArrayBuffer
+val A = ArrayBuffer(10,20,30)
+A += 40 //数组变为10，20，30，40
+a.insert(2,60,40) //数组在第二个元素后插入60和40，变为10，20，60，40，30，40
+a -= 40 //删去第一个为40的数值
+var temp = A.remove(2) // 删去第二个元素
+```
+
+
+
+## 元组
+
+元组是不同类型的值的聚集，可以包含多种不同元素
+
+```scala
+val tuple = ("Big", 2010, 54.2)
+print(tuple._1) //打印出Big
+```
+
